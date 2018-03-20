@@ -11,7 +11,9 @@ public class SelngEg {
 	
 	public String searchProduct(String keyword)
 	{
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\ar7117.ITSERVICES\\Documents\\Softwares\\webdrivers\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\ar7117.ITSERVICES\\Documents\\Softwares\\webdrivers\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/Users/arunrajrajendran/Applications/chromedriver.exe");
+	
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://www.amazon.com");
 		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Macbook pro");
