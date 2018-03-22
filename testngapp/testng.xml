@@ -1,0 +1,28 @@
+<suite name="testngsample" >
+<test name="apitest">
+
+      <groups>
+ 
+         <define name="All">
+ 
+	   		 <include name="apitest"/>
+ 
+	   		 <include name="seltest"/>
+ 
+		 </define>
+ 
+	 	<run>
+ 
+	   		 <include name="All"/>
+ 
+		</run>
+ 
+   	 </groups>
+<classes>
+
+<class name="testng.TestNGsample"></class>
+</classes>
+</test>
+
+
+</suite>
