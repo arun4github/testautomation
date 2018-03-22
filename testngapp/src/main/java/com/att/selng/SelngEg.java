@@ -9,29 +9,44 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class SelngEg {
 	
-	public String searchProduct(String keyword)
-	{
-		//System.setProperty("webdriver.chrome.driver", "C:\\Users\\ar7117.ITSERVICES\\Documents\\Softwares\\webdrivers\\chromedriver.exe");
-		System.setProperty("webdriver.chrome.driver", "/Users/arunrajrajendran/Applications/chromedriver");
+	WebDriver driver;
 	
-		WebDriver driver = new ChromeDriver();
-		driver.get("http://www.amazon.com");
-		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Macbook pro");
+	public SelngEg()
+	{
+		System.setProperty("webdriver.chrome.driver", "/Users/arunrajrajendran/Applications/chromedriver");
+		 driver = new ChromeDriver();
+	}
+	
+	public String getPageUrl(String url)
+	{
+		
+		String loadedUrl="";
+		driver.get(url);
+		loadedUrl=driver.getCurrentUrl();
+
+		return loadedUrl;
+	}
+	
+	
+	
+	public boolean searchProduct(String url,String keyword) throws InterruptedException
+	{
+		driver.get(url);
+		Thread.sleep(2000);
+		driver.findElement(By.id("twotabsearchtextbox")).sendKeys(keyword);
+		
 		driver.findElement(By.xpath(".//*[@id=\"nav-search\"]/form/div[2]/div/input")).click();
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.findElement(By.xpath(".//*[@id=\"result_0\"]/div/div/div/div[2]/div[1]/div[1]/a/h2")).click();
-		driver.findElement(By.id("add-to-cart-button")).click();
-		driver.findElement(By.id("hlb-ptc-btn-native")).click();
-		
-		
-		return null;
+//		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		System.out.println(driver.findElement(By.xpath(".//*[@id=\\\"result_1\\\"]/div/div/div/div[2]/div[1]/div[1]/a")).getText());
+//		//driver.findElement(By.xpath(".//*[@id=\"result_1\"]/div/div/div/div[2]/div[1]/div[1]/a")).click();
+
+		return driver.getCurrentUrl().contains(keyword);
 	}
 	
-	public static void main(String ar[])
+	public void quitDriver()
 	{
-		SelngEg selEg= new SelngEg();
-		selEg.searchProduct("macbook pro");
+		
+		driver.quit();
 	}
-
 }
